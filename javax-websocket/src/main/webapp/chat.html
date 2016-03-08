@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testing websocket</title>
+</head>
+<body>
+        <textarea id="chatlog" cols="50" readonly></textarea><br/>
+        <input id="msg" type="text"/>
+        <button type="submit" id="sendButton" onClick="sendMsg()">Send!</button>
+        <button type="submit" id="closeButton" onClick="closeConnect()">Exit</button>
+</body>
+<script>
+    var ws = new WebSocket("ws://localhost:9999/ws/chat");
+    ws.open = function () {
+    };
+    ws.onmessage = function (message) {
+        document.getElementById("chatlog").textContent += message.data + "\n";
+    };
+
+    function sendMsg() {
+        ws.send(document.getElementById("msg").value);
+        document.getElementById("msg").value = "";
+    }
+    function closeConnect() {
+        ws.close();
+    }
+
+</script>
+</html>

@@ -12,15 +12,15 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * Description: TODO(这里用一句话描述这个类的作用). <br/>
  */
 @ServerEndpoint(value = "/chat")
-public class ChatHandler {
+public class ChatServerHandler {
 
     private String id;
 
     private Session session;
 
-    private static final Set<ChatHandler> connections = new CopyOnWriteArraySet<ChatHandler>();
+    private static final Set<ChatServerHandler> connections = new CopyOnWriteArraySet<ChatServerHandler>();
 
-    public ChatHandler(){
+    public ChatServerHandler(){
 
     }
 
@@ -36,7 +36,7 @@ public class ChatHandler {
 
         connections.add(this);
         String meg = String.format("System > %s %s", this.id, "has connected...");
-        ChatHandler.broadCast(meg);
+        ChatServerHandler.broadCast(meg);
     }
 
     /**
@@ -45,7 +45,7 @@ public class ChatHandler {
      */
     @OnMessage
     public void onMessage(String message){
-        ChatHandler.broadCast(this.id + " : " + message);
+        ChatServerHandler.broadCast(this.id + " : " + message);
     }
 
     /**
@@ -61,11 +61,11 @@ public class ChatHandler {
     public void onClose(){
         connections.remove(this);
         String message = String.format("System > %s, %s", this.id, " has disconnection.");
-        ChatHandler.broadCast(message);
+        ChatServerHandler.broadCast(message);
     }
 
     private static void broadCast(String msg) {
-        for (ChatHandler chat : connections) {
+        for (ChatServerHandler chat : connections) {
             try {
                 synchronized (chat) {
                     chat.session.getBasicRemote().sendText(msg);
@@ -77,7 +77,7 @@ public class ChatHandler {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                ChatHandler.broadCast(String.format("System > %s %s", chat.id, " has bean disconnection."));
+                ChatServerHandler.broadCast(String.format("System > %s %s", chat.id, " has bean disconnection."));
             }
         }
     }

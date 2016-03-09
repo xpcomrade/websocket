@@ -27,7 +27,6 @@ public class Bootstrap {
             ServerContainer wsContainer = WebSocketServerContainerInitializer.configureContext(context);
             wsContainer.addEndpoint(ChatHandler.class);
 
-
             server.start();
             //server.dump(System.err);
             server.join();

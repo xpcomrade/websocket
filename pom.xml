@@ -6,7 +6,7 @@
   <artifactId>websocket</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Maven Quick Start Archetype</name>
+  <name>websocket</name>
   <url>http://maven.apache.org</url>
 
   <modules>

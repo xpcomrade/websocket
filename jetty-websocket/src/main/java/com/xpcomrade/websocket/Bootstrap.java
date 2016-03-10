@@ -12,6 +12,8 @@ import javax.websocket.server.ServerContainer;
  * Copyright (c) 2016, xpcomrade@gmail.com All Rights Reserved.
  * Description: TODO(这里用一句话描述这个类的作用). <br/>
  */
+
+
 public class Bootstrap {
     public static void main(String[] args) {
         Server server = new Server();
@@ -20,7 +22,7 @@ public class Bootstrap {
         server.addConnector(connector);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.setContextPath("/ws");
+        context.setContextPath("/javax-websocket");
         server.setHandler(context);
 
         try {

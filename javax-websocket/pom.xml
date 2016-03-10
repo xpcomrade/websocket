@@ -5,6 +5,7 @@
         <groupId>com.xpcomrade.websocket</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>javax-websocket</artifactId>
     <packaging>war</packaging>
@@ -21,13 +22,6 @@
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
             <version>1.1</version>
-        </dependency>
-
-        <!-- To run javax.websocket in embedded server -->
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>javax-websocket-server-impl</artifactId>
-            <version>${jetty-version}</version>
         </dependency>
     </dependencies>
 
